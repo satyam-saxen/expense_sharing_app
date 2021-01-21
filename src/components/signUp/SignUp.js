@@ -40,7 +40,7 @@ const Password = (props)=>{
                 <div className="help-block"></div>
             
             <label for="inputPassword" className="control-label" name='password'>Confirm Password</label>
-                <input type="password" className="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required
+                <input type="password" className="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="don't match" placeholder="Confirm" required
                  value={props.confirmPassword} onChange={(e)=>props.setConfirmPassword(e.target.value)}/>
                 <div className="help-block with-errors"></div>
         </div>
