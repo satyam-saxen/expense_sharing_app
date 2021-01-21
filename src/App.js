@@ -1,5 +1,5 @@
 import './App.css';
-import SignUp from './components/signUp/signUp';
+import Base from './components/base/Base';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <header></header>
       <main>
-        <SignUp></SignUp>
+        <Base></Base>
       </main>
       <footer>
         <div>Presented By Technogise Interns 2k21</div>
