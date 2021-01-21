@@ -1,43 +1,47 @@
-const SignUp = ()=>{
+const SignUp = (props)=>{
     return(
         <div>
             <h1>Expense Sharing App</h1>
-            <Name></Name>
-            <Phone></Phone>
-            <Password></Password>
+            <Name name={props.params.name} setName={props.params.setName}></Name>
+            <Phone phone={props.params.phone} setPhone={props.params.setPhone}></Phone>
+            <Password password={props.params.password} confirmPassword={props.params.confirmPassword} setPassword={props.params.setPassword} setConfirmPassword={props.params.setConfirmPassword}></Password>
             <Button></Button>
-            <a href="/login"> Login Instead </a>
+            <a href="http://www.technogise.com"> Login Instead </a>
         </div>
     );
 }
 
-const Name = ()=>{
+const Name = (props)=>{
     return(
         <div className="form-group">
             <label for="inputName" className="control-label">Name</label>
-            <input type="text" className="form-control" id="inputName" required name='name'/>
+            <input type="text" className="form-control" id="inputName" required name='name' value={props.name}
+              onChange={(e)=> props.setName(e.target.value)}/>
         </div>
     );
 }
 
-const Phone = ()=>{
+const Phone = (props)=>{
     return(
         <div className="form-group">
             <label for="phone" className="control-label">Phone</label>
-            <input type="text" className="form-control" id="phone" required name='phone'/>
+            <input type="text" className="form-control" id="phone" required name='phone'
+              value={props.phone} onChange={(e)=>props.setPhone(e.target.value)}/>
         </div>
     );
 }
 
-const Password = ()=>{
+const Password = (props)=>{
     return(
         <div className="form-group">
             <label for="inputPassword" className="control-label" name='password'>Password</label>
-                <input type="password" data-minlength="8" className="form-control" id="inputPassword" placeholder="Password" required name="password"/>
+                <input type="password" data-minlength="8" className="form-control" id="inputPassword" placeholder="Password" required name="password"
+                  value={props.password} onChange={(e)=>props.setPassword(e.target.value)}/>
                 <div className="help-block"></div>
             
             <label for="inputPassword" className="control-label" name='password'>Confirm Password</label>
-                <input type="password" className="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required/>
+                <input type="password" className="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required
+                 value={props.confirmPassword} onChange={(e)=>props.setConfirmPassword(e.target.value)}/>
                 <div className="help-block with-errors"></div>
         </div>
     );
