@@ -2,6 +2,7 @@ const SignUp = (props)=>{
     return(
         <div>
             <h1>Expense Sharing App</h1>
+            <h3>SignUp</h3>
             <Name name={props.params.name} setName={props.params.setName}></Name>
             <Phone phone={props.params.phone} setPhone={props.params.setPhone}></Phone>
             <Password password={props.params.password} confirmPassword={props.params.confirmPassword} setPassword={props.params.setPassword} setConfirmPassword={props.params.setConfirmPassword}></Password>
@@ -26,7 +27,7 @@ const Phone = (props)=>{
         <div className="form-group">
             <label htmlFor="phone" className="control-label">Phone</label>
             <input type="text" className="form-control" id="phone" required name='phone'
-              value={props.phone} onChange={(e)=>props.setPhone(e.target.value)}/>
+-             value={props.phone} onChange={(e)=>props.setPhone(e.target.value)}/>
         </div>
     );
 }
