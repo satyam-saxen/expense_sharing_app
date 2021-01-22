@@ -27,7 +27,7 @@ const Phone = (props)=>{
         <div className="form-group">
             <label htmlFor="phone" className="control-label">Phone</label>
             <input type="text" className="form-control" id="phone" required name='phone'
--             value={props.phone} onChange={(e)=>props.setPhone(e.target.value)}/>
+              value={props.phone} onChange={(e)=>props.setPhone(e.target.value)}/>
         </div>
     );
 }
