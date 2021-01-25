@@ -16,7 +16,7 @@ const Name = (props)=>{
     return(
         <div className="form-group">
             <label htmlFor="inputName" className="control-label">Name</label>
-            <input type="text" className="form-control" id="inputName" required name='name' value={props.name}
+            <input type="text" className="form-control" id="inputName" required={true} name='name' value={props.name}
               onChange={(e)=> props.setName(e.target.value)}/>
         </div>
     );
@@ -26,7 +26,8 @@ const Phone = (props)=>{
     return(
         <div className="form-group">
             <label htmlFor="phone" className="control-label">Phone</label>
-            <input type="text" className="form-control" id="phone" required name='phone'
+            <input type="number" className="form-control" id="phone" required={true} name='phone'
+                pattern="\d{10}"
               value={props.phone} onChange={(e)=>props.setPhone(e.target.value)}/>
         </div>
     );
@@ -36,12 +37,12 @@ const Password = (props)=>{
     return(
         <div className="form-group">
             <label htmlFor="inputPassword" className="control-label" name='password'>Password</label>
-                <input type="password" data-minlength="8" className="form-control" id="inputPassword" placeholder="Password" required name="password"
+                <input type="password" data-minlength={8} className="form-control" id="inputPassword" placeholder="Password" required={true} name="password"
                   value={props.password} onChange={(e)=>props.setPassword(e.target.value)}/>
                 <div className="help-block"></div>
             
             <label htmlFor="inputPassword" className="control-label" name='password'>Confirm Password</label>
-                <input type="password" className="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="don't match" placeholder="Confirm" required
+                <input type="password" className="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="don't match" placeholder="Confirm" required={true}
                  value={props.confirmPassword} onChange={(e)=>props.setConfirmPassword(e.target.value)}/>
                 <div className="help-block with-errors"></div>
         </div>
