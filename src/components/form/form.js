@@ -1,6 +1,7 @@
 import SignUp from './../signUp/SignUp';
 import {useState} from 'react';
 import API from './../signUp/signUpApi';
+import './form.css';
 
 const Form = ()=>{
     let [name,setName]=useState('');
@@ -25,7 +26,6 @@ const Form = ()=>{
             alert("Invalid Phone or password mismatch!");
             return(<div></div>);
         }else{
-            console.log("Checking...");
             setIsValid(true);
         }        
     }
