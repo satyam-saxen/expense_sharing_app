@@ -1,4 +1,3 @@
-import './Base.css';
 import Form from '../form/form';
 const Base = ()=>{
     return(<div className="container">
