@@ -7,6 +7,7 @@ const Form = ()=>{
     let [phone,setPhone]=useState('');
     let [password,setPassword]=useState('');
     let [confirmPassword,setConfirmPassword]=useState('');
+    let [isValid,setIsValid] = useState(false);
     let params = {
         "name":name,
         "setName":setName,
@@ -24,16 +25,17 @@ const Form = ()=>{
             alert("Invalid Phone or password mismatch!");
             return(<div></div>);
         }else{
-            return API(params);      
-        }
-        
+            console.log("Checking...");
+            setIsValid(true);
+        }        
     }
 
     return(
-        <div>
+        <div>{!isValid && 
             <form data-toggle="validator"  onSubmit={validatePhone}>
                 <SignUp params={params}></SignUp>
-            </form>
+            </form>}
+            {isValid && <API params={params}></API>}
         </div>
     )
 }
