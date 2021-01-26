@@ -29,7 +29,7 @@ form:after {
 }
 .container { margin: 25px auto; position: relative; width: 900px; }
 #content {
-	background: rgb(102, 201, 168);
+	background: #78c4e2;
 	background: -moz-linear-gradient(top,  rgba(248,248,248,1) 0%, rgba(249,249,249,1) 100%);
 	background: -webkit-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
 	background: -o-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
