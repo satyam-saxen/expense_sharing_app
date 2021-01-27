@@ -1,31 +1,40 @@
-import logIn from './../logIn/LogIn';
+import LogIn from './../logIn/LogIn';
 import {useState} from 'react';
-import './form.css';
+import response from './response';
 
 const Form = ()=>{
-    let [phone,getPhone]=useState('');
-    let [password,getPassword]=useState('');
+    let [phone,setPhone]=useState('');
+    let [password,setPassword]=useState('');
     let [isValid,setIsValid] = useState(false);
+    let [message, setMessage] = useState('');
     let params = {
         "phone":phone,
-        "password":password
+        "setPhone":setPhone,
+        "password":password,
+        "setPassword":setPassword,
     };
 
-    const validatePhoneAndPassword = (e)=>{
+    const validatePhone = async (e)=>{
         e.preventDefault();
-        if(phone.length !== 10 || password.length === 0){
-            alert("Invalid Phone Number! or Password");
+        if(phone.length !== 10){
+            alert("Invalid Phone Number! or Password!");
             return(<div></div>);
         } else{
-            setIsValid(true);
+            
+            response(setMessage, phone, password, setIsValid);
+
         }        
     }
 
     return(
         <div>{!isValid && 
-            <form data-toggle="validator"  onSubmit={validatePhoneAndPassword}>
+            <form data-toggle="validator"  onSubmit={validatePhone}>
                 <LogIn params={params}></LogIn>
+                {/* console.log("I am on") */}
             </form>}
+            {isValid && 
+                <div>{message}</div>
+            }
         </div>
     )
 }
