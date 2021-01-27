@@ -10,8 +10,8 @@ const API = ({params})=>{
   console.log(params);
   useEffect(() => {
     const a = async () => {
-      // const response = await handleFetch();
-      const response = {
+      // const response = await handleFetch();   //This line should be present while running the code
+      const response = { // this is just for running code without signup api
         status: 200
       };
       console.log("In useEffect");
