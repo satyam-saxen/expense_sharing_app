@@ -8,7 +8,7 @@ const LogInResponse = ({response}) => {
     if(status === 200 || status === 201) {
         return (<Homepage></Homepage>);
     } else if(status === 400) {
-        return <h1>Bad Resuest</h1>
+        return <h1>Bad Request</h1>
     } else if(status === 409) {
         return (<h1>Number already Exists</h1>)
     } else if(status === 404) {
