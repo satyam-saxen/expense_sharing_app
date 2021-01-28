@@ -62,7 +62,7 @@ form:after {
 	height: 1px;
 	position: absolute;
 	top: 10px;
-	width: 27%;
+	width: 18%;
 }
 #content h1:after {
 	background: rgb(126,126,126);
@@ -146,7 +146,7 @@ form:after {
 	height: 100%;
 	left: -1px;
 	position: absolute;
-	width: 100%;
+	width:100%;
 }
 #content:after {
 	-webkit-transform: rotate(2deg);
