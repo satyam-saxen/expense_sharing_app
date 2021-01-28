@@ -18,4 +18,12 @@ describe("SignUp component",()=>{
         
     });
 
+    it('should not allow letters to be inputted', () => {
+        const randomString = 'Good Day';
+        render(<Form></Form>)
+        expect(screen.getByLabelText('Phone').value).toBe('') // empty before
+        fireEvent.change(screen.getByLabelText('Phone'), { target: { value: randomString } })
+        expect(screen.getByLabelText('Phone').value).toBe('') //empty after
+        
+    });
 });
