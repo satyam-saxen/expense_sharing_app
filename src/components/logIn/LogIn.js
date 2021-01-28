@@ -18,7 +18,7 @@ const Phone = (props)=>{
     return(
         <div className="form-group">
             <label htmlFor="phone" className="control-label">Phone</label>
-            <input type="number" className="form-control" id="phone" required={true} name='phone'
+            <input type="text" className="form-control" id="phone" required={true} name='phone'
                 pattern="\d{10}" placeholder="10 digit Phone Number"
               value={props.phone} onChange={(e)=>props.setPhone(e.target.value)}/>
         </div>
