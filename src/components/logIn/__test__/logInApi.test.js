@@ -23,4 +23,35 @@ describe('Form', () => {
         });
         window.alert = jsdomAlert;
     });
+
+    test('fetches response for Bad Request from the API', async () => { 
+        const jsdomAlert = window.alert;
+        window.alert = () => {};
+        axios.post.mockImplementationOnce(() => Promise.resolve({ status: 400 }));
+
+        await act(async () => {
+        const { findByText } = render(<API></API>);
+
+        await waitFor(() => findByText(/Bad Request/i));
+        const element = await findByText(/Bad Request/i);
+        expect(element).toBeInTheDocument();
+        });
+        window.alert = jsdomAlert;
+    });
+
+    // test('fetches response from an API to create user with the phone number already exist', async () => { 
+    //     const jsdomAlert = window.alert; // remember the jsdom alert
+    //     window.alert = () => {};
+    //     axios.post.mockImplementationOnce(() => Promise.resolve({ status: 409 }));
+
+    //     await act(async () => {
+    //     const { findByText } = render(<API></API>);
+
+    //     await waitFor(() => findByText(/Number already exist/i));
+    //     const element = await findByText(/Number already exist/i);
+    //     expect(element).toBeInTheDocument();
+    //     });
+    //     window.alert = jsdomAlert;
+
+    // });
   });
