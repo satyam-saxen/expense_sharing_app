@@ -16,9 +16,9 @@ describe("Form", () => {
       screen.getByPlaceholderText(/Password/i)
     ).toBeInTheDocument();
 
-    // expect(
-    //     screen.getByRole("spinbutton", { name: /phone/i })
-    //   ).toBeInTheDocument();
+    expect(
+        screen.getByRole("spinbutton", { name: /phone/i })
+      ).toBeInTheDocument();
     
     expect(
         screen.getByPlaceholderText(/10 digit Phone Number/i)
