@@ -39,19 +39,18 @@ describe('Form', () => {
         window.alert = jsdomAlert;
     });
 
-    // test('fetches response from an API to create user with the phone number already exist', async () => { 
-    //     const jsdomAlert = window.alert; // remember the jsdom alert
-    //     window.alert = () => {};
-    //     axios.post.mockImplementationOnce(() => Promise.resolve({ status: 409 }));
+    test('fetches response for Bad Request from the API', async () => { 
+        const jsdomAlert = window.alert;
+        window.alert = () => {};
+        axios.post.mockImplementationOnce(() => Promise.resolve({ status: 404 }));
 
-    //     await act(async () => {
-    //     const { findByText } = render(<API></API>);
+        await act(async () => {
+        const { findByText } = render(<API></API>);
 
-    //     await waitFor(() => findByText(/Number already exist/i));
-    //     const element = await findByText(/Number already exist/i);
-    //     expect(element).toBeInTheDocument();
-    //     });
-    //     window.alert = jsdomAlert;
-
-    // });
+        await waitFor(() => findByText(/Not Found!/i));
+        const element = await findByText(/Not Found!/i);
+        expect(element).toBeInTheDocument();
+        });
+        window.alert = jsdomAlert;
+    });
   });
