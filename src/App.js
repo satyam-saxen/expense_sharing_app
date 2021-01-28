@@ -1,12 +1,20 @@
-import logo from './logo.svg';
+
 import './App.css';
-import Form from './components/form/form';
+import Base from './components/base/Base';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <div className="App">
-        <Form/>  
+      <header></header>
+      <main className="row">
+        <Base className="center"></Base>
+      </main>
+      <footer>
+        <div>Presented By Technogise Interns 2k21</div>
+      </footer>
     </div>
+    
   );
 }
 
