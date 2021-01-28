@@ -1,6 +1,6 @@
 import LogIn from './../logIn/LogIn';
 import {useState} from 'react';
-import response from './response';
+import API from './../logIn/logInApi';
 
 const Form = ()=>{
     let [phone,setPhone]=useState('');
@@ -11,7 +11,7 @@ const Form = ()=>{
         "phone":phone,
         "setPhone":setPhone,
         "password":password,
-        "setPassword":setPassword,
+        "setPassword":setPassword
     };
 
     const validatePhone = async (e)=>{
@@ -21,7 +21,7 @@ const Form = ()=>{
             return(<div></div>);
         } else{
             
-            response(setMessage, phone, password, setIsValid);
+            setIsValid(true);
 
         }        
     }
@@ -30,13 +30,10 @@ const Form = ()=>{
         <div>{!isValid && 
             <form data-toggle="validator"  onSubmit={validatePhone}>
                 <LogIn params={params}></LogIn>
-                {/* console.log("I am on") */}
             </form>}
-            {isValid && 
-                <div>{message}</div>
-            }
+            {isValid && <API params={params}></API>} 
         </div>
     )
-}
+ }
 
 export default Form;
