@@ -27,7 +27,7 @@ form:after {
 	clear: both;
 	visibility: hidden;
 }
-.container { margin: 25px auto; position: relative; width: 900px; }
+.container { margin: 150px auto; position: relative; width: 900px; }
 #content {
 	background: #78c4e2;
 	background: -moz-linear-gradient(top,  rgba(248,248,248,1) 0%, rgba(249,249,249,1) 100%);
@@ -50,7 +50,7 @@ form:after {
 	width: 400px;
 }
 #content h1 {
-	color: #7E7E7E;
+	color: #616060;
 	font: bold 25px Helvetica, Arial, sans-serif;
 	letter-spacing: -0.05em;
 	line-height: 20px;
@@ -107,7 +107,9 @@ form:after {
     position: relative;
     bottom:-50px;
     left:5px;
-    block-size: 40px;
+    block-size: 50px;
+    background-color: #0b89bb;
+    width: 90px;
 }
 #register {
     font-size: medium;
