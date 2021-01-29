@@ -30,14 +30,15 @@ const Form = ()=>{
         }        
     }
 
-    return(
-        <div>{!isValid && 
+    return(<>{!isValid && 
+    <div className="container">
+        <section id="content" >
             <form data-toggle="validator"  onSubmit={validatePhone}>
                 <SignUp params={params}></SignUp>
-            </form>}
-            {isValid && <API params={params}></API>}
-        </div>
-    )
+            </form>
+        </section>
+    </div>}
+    {isValid && <API></API>}</>)
 }
 
 
