@@ -17,8 +17,8 @@ describe('Form', () => {
         await act(async () => {
         const { findByText } = render(<API></API>);
 
-        await waitFor(() => findByText(/Homepage/i));
-        const element = await findByText(/Homepage/i);
+        await waitFor(() => findByText(/Welcome!/i));
+        const element = await findByText(/Welcome!/i);
         expect(element).toBeInTheDocument();
         });
         window.alert = jsdomAlert;
