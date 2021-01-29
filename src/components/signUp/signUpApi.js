@@ -1,9 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import SignUpResponse from './signUpResponse';
-import {useState,useEffect} from 'react';
-import Config from './../../Config.json';
 
 const API = ({params})=>{  
   let [response, setResponse] = useState(null);
@@ -27,20 +23,31 @@ const API = ({params})=>{
 }
 
 async function handleFetch({phone,password,name}){
-  try {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-      const response = await axios.post(`${proxyurl}${Config.Config.url}/users`,{
-        name:name,
-        phoneNumber:phone,
-        password:password
+  let response = () => {
+    
+  return new Promise(function(resolve, reject) {
+      const options = {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json, text/plain',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          phoneNumber:phone,
+          password: password,
+        }) 
+      }
+
+      fetch('http://localhost:8080/users',
+          options
+      ).then(response => {
+        resolve(response);
       });
-      return response;
-    } catch (error) {
-      return new Error();
-  }
+    });
+  };
+  let responseData = await response();
+  return responseData;
 }
-
-
-
 
 export default API;
