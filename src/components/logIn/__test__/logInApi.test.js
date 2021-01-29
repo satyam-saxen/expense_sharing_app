@@ -27,19 +27,19 @@ describe('Form', () => {
     test('fetches response for Bad Request from the API', async () => { 
         const jsdomAlert = window.alert;
         window.alert = () => {};
-        axios.post.mockImplementationOnce(() => Promise.resolve({ status: 400 }));
+        axios.post.mockImplementationOnce(() => Promise.resolve({ status: 401 }));
 
         await act(async () => {
         const { findByText } = render(<API></API>);
 
-        await waitFor(() => findByText(/Bad Request/i));
-        const element = await findByText(/Bad Request/i);
+        await waitFor(() => findByText(/Unauthorized/i));
+        const element = await findByText(/Unauthorized/i);
         expect(element).toBeInTheDocument();
         });
         window.alert = jsdomAlert;
     });
 
-    test('fetches response for Bad Request from the API', async () => { 
+    test('fetches response for Not Found from the API', async () => { 
         const jsdomAlert = window.alert;
         window.alert = () => {};
         axios.post.mockImplementationOnce(() => Promise.resolve({ status: 404 }));
