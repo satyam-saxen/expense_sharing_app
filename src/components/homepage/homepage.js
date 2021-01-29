@@ -1,6 +1,6 @@
 const Homepage = ()=>{
-    console.log("Home is here");
-    return(<div>Homepage</div>)
+    console.log("Welcome!");
+    return(<div>Welcome!</div>)
 }
 
 export default Homepage;

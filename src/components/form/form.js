@@ -28,7 +28,7 @@ const Form = ()=>{
     return(
         <div>{!isValid && 
             <form data-toggle="validator"  onSubmit={validatePhone}>
-                <LogIn params={params}></LogIn>Renders
+                <LogIn params={params}></LogIn>
             </form>}
             {isValid && <API params={params}></API>} 
         </div>

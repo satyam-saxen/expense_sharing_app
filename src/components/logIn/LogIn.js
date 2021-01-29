@@ -7,7 +7,7 @@ const LogIn=(props) => {
             <Phone phone={props.params.phone} setPhone={props.params.setPhone}></Phone>
             <Password password={props.params.password} setPassword={props.params.setPassword}></Password>
             <Button id="signInButton"></Button>
-            <h5>_______</h5>
+            <h5>.</h5>
             <a id="register" href="http://www.technogise.com"> Register Here </a>
         </div>
     );
