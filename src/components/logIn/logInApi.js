@@ -10,10 +10,10 @@ const API=({params}) => {
     // console.log(params);
     useEffect(() => {
         const a = async() => {
-            // const response = await handleFetch();
-            const response = {
-                status : 404
-            };
+            const response = await handleFetch();
+            // const response = {
+            //     status : 404
+            // };
             setResponse(response);
         };
         a();
