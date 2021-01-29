@@ -5,8 +5,7 @@ import API from './../logIn/logInApi';
 const Form = ()=>{
     let [phone,setPhone]=useState('');
     let [password,setPassword]=useState('');
-    let [isValid,setIsValid] = useState(false);
-    let [message, setMessage] = useState('');
+    let [isValid,setIsValid] = useState(false);     
     let params = {
         "phone":phone,
         "setPhone":setPhone,
@@ -29,7 +28,7 @@ const Form = ()=>{
     return(
         <div>{!isValid && 
             <form data-toggle="validator"  onSubmit={validatePhone}>
-                <LogIn params={params}></LogIn>
+                <LogIn params={params}></LogIn>Renders
             </form>}
             {isValid && <API params={params}></API>} 
         </div>
