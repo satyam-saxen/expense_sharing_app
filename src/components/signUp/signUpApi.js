@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Config from './../../Config.json';
 import SignUpResponse from './signUpResponse';
 
 const API = ({params})=>{  
@@ -7,9 +8,6 @@ const API = ({params})=>{
   useEffect(() => {
     const a = async () => {
       let response = await handleFetch(params); 
-      console.log("Is it working");
-      console.log(response);
-      console.log("In useEffect");
       setResponse(response);
     };
 
@@ -39,7 +37,7 @@ async function handleFetch({phone,password,name}){
         }) 
       }
 
-      fetch('http://localhost:8080/users',
+      fetch(`${Config.Config.url}/users`,
           options
       ).then(response => {
         resolve(response);
