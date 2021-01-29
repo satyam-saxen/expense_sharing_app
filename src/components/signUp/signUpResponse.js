@@ -1,4 +1,5 @@
 import React from 'react';
+import Form from '../form/form';
 import Homepage from './../homepage/homepage';
 const SignUpResponse  = ({response})=>{
     
@@ -7,9 +8,11 @@ const SignUpResponse  = ({response})=>{
     if(status === 200 || status === 201){
         return(<Homepage></Homepage>);
     }else if(status === 400){
-        return(<h1>Bad Request</h1>)
+        alert("Incorrect Password");
+        return(<Form></Form>);
     }else if(status === 409){
-        return(<h1>Number already exist</h1>);
+        alert("Someone already have this number please try with other Phone Number");
+        return(<Form></Form>);
     }
     
 }
