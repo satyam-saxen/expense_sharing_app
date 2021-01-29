@@ -3,17 +3,16 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import SignUpResponse from './signUpResponse';
 import {useState,useEffect} from 'react';
+import Config from './../../Config.json';
 
 const API = ({params})=>{  
   let [response, setResponse] = useState(null);
-  
-  console.log(params);
+
   useEffect(() => {
     const a = async () => {
-      // const response = await handleFetch();   //This line should be present while running the code
-      const response = { // this is just for running code without signup api
-        status: 200
-      };
+      let response = await handleFetch(params); 
+      console.log("Is it working");
+      console.log(response);
       console.log("In useEffect");
       setResponse(response);
     };
@@ -27,10 +26,14 @@ const API = ({params})=>{
   return(<SignUpResponse response={response}></SignUpResponse>);
 }
 
-async function handleFetch(){
+async function handleFetch({phone,password,name}){
   try {
-      let response = await axios.post(``);
-      console.log(response);
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+      const response = await axios.post(`${proxyurl}${Config.Config.url}/users`,{
+        name:name,
+        phoneNumber:phone,
+        password:password
+      });
       return response;
     } catch (error) {
       return new Error();
