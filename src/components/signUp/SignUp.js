@@ -1,59 +1,154 @@
+import Input from "react-validation/build/input";
+import Form from "react-validation/build/form";
+import {useState, useRef} from 'react';
+import register from './../../services/userService';
+import './signUp.css';
+
+const validPhone = (value) => {
+    if (value.length !== 10) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This is not a valid Phone.
+        </div>
+      );
+    }
+  };
+
+const vpassword = (value) => {
+    if (value.length < 6 || value.length > 40) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          The password must be between 6 and 40 characters.
+        </div>
+      );
+    }
+  };
 const SignUp = (props)=>{
+    const form = useRef();
+    let [name,setName]=useState('');
+    let [phone,setPhone]=useState('');
+    let [password,setPassword]=useState('');
+    let [confirmPassword,setConfirmPassword]=useState('');
+    const [successful, setSuccessful] = useState(false);
+    const [message, setMessage] = useState("");
+    const [status,setStatus] = useState(false);
+    const [response,setResponse] = useState(null);
+    const [errorMsg,setErrorMsg] = useState('');
+
+      const onChangeUsername = (e) => {
+        const username = e.target.value;
+        setName(username);
+      };
+    
+      const onChangephone = (e) => {
+        const phone = e.target.value;
+        setPhone(phone);
+      };
+    
+      const onChangePassword = (e) => {
+        const password = e.target.value;
+        setPassword(password);
+      };
+    
+      const onChangeConfirmPassword = (e) => {
+        const confirmPassword = e.target.value;
+        setConfirmPassword(confirmPassword);
+      };
+
+
+    const handleRegister = (e)=>{
+        e.preventDefault();
+
+        setMessage("");
+        setStatus(false);
+        setSuccessful(false);
+
+        form.current.validateAll();
+
+        if(password !== confirmPassword){
+            setMessage("Password don't match!!");
+        }else{             
+               register({name,phone,password})
+               .then(response=>{
+                console.log(response);
+                setResponse(response);
+                if(response.status === 201){
+                  props.history.push('/home');
+                }else{
+                   setStatus(true);
+                   if(response.status === 409){
+                      setErrorMsg("Phone number already exist, Try new one!!");
+                   }else if(response.status === 400) {
+                     setErrorMsg("Data Incorrect");
+                   }
+                }
+               }).catch(error =>{
+                  console.log(error.message);
+               })
+
+        }        
+    }
+
     return(
-        <div>
-            <h1>Expense Sharing App</h1>
-            <h3>SignUp</h3>
-            <Name name={props.params.name} setName={props.params.setName}></Name>
-            <Phone phone={props.params.phone} setPhone={props.params.setPhone}></Phone>
-            <Password password={props.params.password} confirmPassword={props.params.confirmPassword} setPassword={props.params.setPassword} setConfirmPassword={props.params.setConfirmPassword}></Password>
-            <Button></Button>
-            <a href="http://www.technogise.com"> Login Instead </a>
-        </div>
+        <div className="container">
+        <section id="content" >
+            <Form onSubmit={handleRegister} ref={form}>
+              {!successful && <div>
+                <h1>Expense Sharing App</h1>
+                <h3>SignUp</h3>
+                <div className="form-group">
+                    <label htmlFor="inputName" className="control-label">Name</label>
+                    <Input type="text" className="form-control" id="inputName" required={true} placeholder="Name" name='name' value={name}
+                    onChange={onChangeUsername}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="phone" className="control-label">Phone</label>
+                    <Input type="number" className="form-control" id="phone" required={true} name='phone'
+                        placeholder="10 digit Phone Number"
+                    value={phone} onChange={onChangephone} validations={[validPhone]}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="inputPassword" className="control-label" name='password'>Password</label>
+                        <Input type="password" data-minlength={8} className="form-control" id="inputPassword" placeholder="Password" required={true} name="password"
+                        value={password} onChange={onChangePassword} validations={[vpassword]}/>
+                        
+                    
+                    <label htmlFor="inputPassword" className="control-label" name='password'>Confirm Password</label>
+                        <Input type="password" className="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="don't match" placeholder="Confirm" required={true}
+                        value={confirmPassword} onChange={onChangeConfirmPassword} validations={[vpassword]}/>
+                        
+                </div>
+                
+                {message && 
+                  <div className="form-group">
+                    <div
+                      className={ successful ? "alert alert-success" : "alert alert-danger" }
+                      role="alert"
+                    >
+                      {message}
+                    </div>
+                  </div>
+                }
+                <div className="form-group">
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </div>
+                <a href="http://www.technogise.com"> Login Instead </a>
+                </div> }
+                {status && 
+                  <div className="form-group">
+                    <div
+                      className={ successful ? "alert alert-success" : "alert alert-danger" }
+                      role="alert"
+                    >
+                      {errorMsg}
+                    </div>
+                  </div>
+                }
+            </Form>
+        </section>
+    </div>
     );
 }
 
-const Name = (props)=>{
-    return(
-        <div className="form-group">
-            <label htmlFor="inputName" className="control-label">Name</label>
-            <input type="text" className="form-control" id="inputName" required={true} placeholder="Name" name='name' value={props.name}
-              onChange={(e)=> props.setName(e.target.value)}/>
-        </div>
-    );
-}
 
-const Phone = (props)=>{
-    return(
-        <div className="form-group">
-            <label htmlFor="phone" className="control-label">Phone</label>
-            <input type="number" className="form-control" id="phone" required={true} name='phone'
-                pattern="\d{10}" placeholder="10 digit Phone Number"
-              value={props.phone} onChange={(e)=>props.setPhone(e.target.value)}/>
-        </div>
-    );
-}
-
-const Password = (props)=>{
-    return(
-        <div className="form-group">
-            <label htmlFor="inputPassword" className="control-label" name='password'>Password</label>
-                <input type="password" data-minlength={8} className="form-control" id="inputPassword" placeholder="Password" required={true} name="password"
-                  value={props.password} onChange={(e)=>props.setPassword(e.target.value)}/>
-                <div className="help-block"></div>
-            
-            <label htmlFor="inputPassword" className="control-label" name='password'>Confirm Password</label>
-                <input type="password" className="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="don't match" placeholder="Confirm" required={true}
-                 value={props.confirmPassword} onChange={(e)=>props.setConfirmPassword(e.target.value)}/>
-                <div className="help-block with-errors"></div>
-        </div>
-    );
-}
-
-const Button = ()=>{
-    return(
-        <div className="form-group">
-            <button type="submit" className="btn btn-primary">Submit</button>
-        </div>
-    );
-}
 export default SignUp;

@@ -1,6 +1,5 @@
 const Homepage = ()=>{
-    console.log("Home is here");
-    return(<div>Homepage</div>)
+    return(<div><h1>Homepage</h1></div>);
 }
 
 export default Homepage;

@@ -1,15 +1,42 @@
 import React from 'react';
-import Form from './../../form/form';
+import SignUp from './../SignUp';
 import { render,cleanup , screen,fireEvent} from '@testing-library/react';
 import "@testing-library/jest-dom/extend-expect";
 
 afterEach(cleanup);
 
+describe("Form", () => {
+    it("should render the basic fields", () => {
+      render(<SignUp></SignUp>);
+      expect(
+        screen.getByRole("heading", { name: "SignUp" })
+      ).toBeInTheDocument();
+      expect(screen.getByRole("textbox", { name: /name/i })).toBeInTheDocument();
+  
+      expect(
+          screen.getByRole("spinbutton", { name: /phone/i })
+        ).toBeInTheDocument();
+  
+      expect(
+        screen.getByPlaceholderText(/Password/i)
+      ).toBeInTheDocument();
+  
+      expect(
+          screen.getByPlaceholderText(/Confirm/i)
+        ).toBeInTheDocument();
+      
+      expect(screen.getByRole("button")).toBeInTheDocument();
+  
+    });
+  });
+  
+  
+
 describe("SignUp component",()=>{
     it("checks for the name field to have non zero length",()=>{
         const Name = 'Abhay';
         
-        render(<Form></Form>);
+        render(<SignUp></SignUp>);
         fireEvent.change(screen.getByLabelText('Name'), {
         target: { value: Name },
         });
@@ -21,7 +48,7 @@ describe("SignUp component",()=>{
     it('should check for the phone to be of digits', () => {
 
         const PhoneNumber = '8865011413';
-        render(<Form></Form>)
+        render(<SignUp></SignUp>)
         expect(screen.getByLabelText('Phone').value).toBe('') // empty before
         fireEvent.change(screen.getByLabelText('Phone'), { target: { value: PhoneNumber } })
         expect(screen.getByLabelText('Phone').value).toBe(PhoneNumber) //empty after
@@ -30,7 +57,7 @@ describe("SignUp component",()=>{
 
     it('should not allow letters to be inputted', () => {
         const randomString = 'Good Day';
-        render(<Form></Form>)
+        render(<SignUp></SignUp>)
         expect(screen.getByLabelText('Phone').value).toBe('') // empty before
         fireEvent.change(screen.getByLabelText('Phone'), { target: { value: randomString } })
         expect(screen.getByLabelText('Phone').value).toBe('') //empty after
@@ -39,10 +66,10 @@ describe("SignUp component",()=>{
 
     it("should check for the password not to be equal", () => {
 
-        const pass = 12345;
-        const conPass = 12343;
+        const pass = 123456;
+        const conPass = 123436;
 
-        render(<Form></Form>);
+        render(<SignUp></SignUp>);
 
         fireEvent.input(screen.getByPlaceholderText(/Password/),{target:{ value:pass}});
 
@@ -56,10 +83,10 @@ describe("SignUp component",()=>{
 
     it("should check for the password to be equal", () => {
 
-        const pass = 12345;
-        const conPass = 12345;
+        const pass = 123456;
+        const conPass = 123456;
 
-        render(<Form></Form>);
+        render(<SignUp></SignUp>);
 
         fireEvent.input(screen.getByPlaceholderText(/Password/),{target:{ value:pass}});
 

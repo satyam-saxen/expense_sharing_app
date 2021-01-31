@@ -1,26 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import Config from './../../Config.json';
-import SignUpResponse from './signUpResponse';
+import Config from './../Config.json';
 
-const API = ({params})=>{  
-  let [response, setResponse] = useState(null);
-
-  useEffect(() => {
-    const a = async () => {
-      let response = await handleFetch(params); 
-      setResponse(response);
-    };
-
-    a();
-  }, []);
-
-  if (!response) {
-    return null;
-  }
-  return(<SignUpResponse response={response}></SignUpResponse>);
-}
-
-async function handleFetch({phone,password,name}){
+async function register({phone,password,name}){
   let response = () => {
     
   return new Promise(function(resolve, reject) {
@@ -40,12 +20,18 @@ async function handleFetch({phone,password,name}){
       fetch(`${Config.Config.url}/users`,
           options
       ).then(response => {
+        console.log("Hi everyone");
+        console.log(response);
         resolve(response);
       });
     });
   };
   let responseData = await response();
+  // const responseData = {
+  //   status:200,
+  //   message:"Phone Number already in use"
+  // }
   return responseData;
 }
 
-export default API;
+export default register;

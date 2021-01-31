@@ -3,7 +3,7 @@
   height: 100vh;
   background-color: #87cbe6;
   width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 footer {
@@ -14,8 +14,4 @@ footer {
   background-color: black;
   color: #37b9ec;
   text-align: center;
-}
-
-header {
-  background-color: aquamarine;
 }
