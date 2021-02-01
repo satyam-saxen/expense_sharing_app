@@ -1,11 +1,13 @@
-import LogIn from './../logIn/LogIn';
+import LogIn from './../logIn/LogIn.jsx';
 import {useState} from 'react';
-import API from './../logIn/logInApi';
+import userLogin from '../logIn/userLogin';
+import LogInResponse from '../logIn/logInResponse.js';
 
 const Form = ()=>{
     let [phone,setPhone]=useState('');
     let [password,setPassword]=useState('');
-    let [isValid,setIsValid] = useState(false);     
+    let [isValid,setIsValid] = useState(false);  
+    let [responseComponent,setResponseComponent] = useState(null);  
     let params = {
         "phone":phone,
         "setPhone":setPhone,
@@ -15,22 +17,29 @@ const Form = ()=>{
 
     const validatePhone = async (e)=>{
         e.preventDefault();
-        if(phone.length !== 10){
-            alert("Invalid Phone Number! or Password!");
-            return(<div></div>);
-        } else{
-            
-            setIsValid(true);
-
-        }        
+        if(phone.length!==10 || password.length<6)
+        return alert('Invalid Phone or Password!');
+       
+         try{
+               
+             const response = await userLogin(phone,password);
+             console.log(response);
+             setResponseComponent(response);
+             setIsValid(true);
+            }
+            catch(err){
+                // alert(err.message);
+                LogInResponse(err.response);
+                console.log(err.response.status);
+            }        
     }
-
     return(
         <div>{!isValid && 
+            <section id="content">
             <form data-toggle="validator"  onSubmit={validatePhone}>
                 <LogIn params={params}></LogIn>
-            </form>}
-            {isValid && <API params={params}></API>} 
+            </form></section>}
+            {isValid && <div>{responseComponent}</div>} 
         </div>
     )
  }
