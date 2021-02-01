@@ -21,14 +21,12 @@ async function register({phone,password,name}){
           options
       ).then(response => {
         resolve(response);
+      }).catch(error=>{
+        reject(error);
       });
     });
   };
   let responseData = await response();
-  // const responseData = {
-  //   status:200,
-  //   message:"Phone Number already in use"
-  // }
   return responseData;
 }
 

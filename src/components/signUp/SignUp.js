@@ -8,7 +8,7 @@ const validPhone = (value) => {
     if (value.length !== 10) {
       return (
         <div className="alert alert-danger" role="alert">
-          This is not a valid Phone.
+          Please enter a valid phone number
         </div>
       );
     }
@@ -64,26 +64,35 @@ const SignUp = (props)=>{
         setSuccessful(false);
 
         form.current.validateAll();
-
-        if(password !== confirmPassword){
-            setMessage("Password don't match!!");
-        }else{             
+          setMessage("");
+          if(phone.length !== 10){
+            setMessage("Phone number is not Valid");
+          }else if(password !== confirmPassword || password.length<6){
+          setMessage("Passwords don't match");
+          if(phone.length !== 10){
+            setMessage("Phone number is not Valid");
+          }
+          if(password.length<6 || password.length>40) {
+            setMessage("Password must be between 6 and 40 characters");
+          }
+          }else{             
                register({name,phone,password})
                .then(response=>{
-                console.log(response);
                 setResponse(response);
                 if(response.status === 201){
                   props.history.push('/home');
                 }else{
                    setStatus(true);
                    if(response.status === 409){
-                      setErrorMsg("Phone number already exist, Try new one!!");
+                      setErrorMsg("This phone number already exists, try logging in");
                    }else if(response.status === 400) {
                      setErrorMsg("Data Incorrect");
+                   }else{
+                     setErrorMsg(response);
                    }
                 }
                }).catch(error =>{
-                  console.log(error.message);
+                 setErrorMsg(error);
                })
 
         }        
