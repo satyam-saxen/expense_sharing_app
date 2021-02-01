@@ -38,7 +38,7 @@ describe("Testing sign-up API",()=>{
           await act(async () => {
           fireEvent.click(screen.getByRole('button', {name: /Submit/i}))
           expect(window.fetch).toHaveBeenCalledTimes(0)
-          const element = await findByText(/Password don't match/i);
+          const element = await findByText(/Passwords don't match/i);
           expect(element).toBeInTheDocument();
           });
       
@@ -68,7 +68,7 @@ describe("Testing sign-up API",()=>{
           await act(async () => {
           fireEvent.click(screen.getByRole('button', {name: /Submit/i}))
           expect(window.fetch).toHaveBeenCalledTimes(0)
-          const element = await findByText(/This is not a valid Phone/i);
+          const element = await findByText(/Please enter a valid phone number/i);
           expect(element).toBeInTheDocument();
           });
       
