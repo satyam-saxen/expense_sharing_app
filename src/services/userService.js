@@ -20,8 +20,6 @@ async function register({phone,password,name}){
       fetch(`${Config.Config.url}/users`,
           options
       ).then(response => {
-        console.log("Hi everyone");
-        console.log(response);
         resolve(response);
       });
     });
