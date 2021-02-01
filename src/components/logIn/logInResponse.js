@@ -1,11 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Homepage from './../homepage/homepage';
+import cookieHandler from './../HandleCookie/handleCookie';
+import {Switch, Route } from 'react-router-dom';
 
 const LogInResponse = ({response}) => {
 
     const status = response.status;
     if(status === 200) {
+        cookieHandler.setCookie('esaUserToken',response.authToken);
+        console.log(cookieHandler.getCookie('esaUserToken'));
+        // console.log(cookieHandler.deleteCookie('esaUserToken'));
         return (<Homepage></Homepage>);
     } else if(status === 401) {
         return <h1>Unauthorized</h1>
