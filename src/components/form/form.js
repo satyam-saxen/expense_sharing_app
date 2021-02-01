@@ -1,6 +1,6 @@
-import LogIn from './../logIn/LogIn.jsx';
+import LogIn from './../logIn/LogIn.js';
 import {useState} from 'react';
-import userLogin from '../logIn/userLogin';
+import userLogIn from '../logIn/userLogIn';
 import LogInResponse from '../logIn/logInResponse.js';
 
 const Form = ()=>{
@@ -22,7 +22,7 @@ const Form = ()=>{
        
          try{
                
-             const response = await userLogin(phone,password);
+             const response = await userLogIn(phone,password);
              console.log(response);
              setResponseComponent(response);
              setIsValid(true);
