@@ -1,0 +1,12 @@
+install: skip
+os: linux
+before_script:
+  - npm install
+script:
+  - npm test
+notifications:
+  email:
+    recipients:
+      - satyam@technogise.com
+    on_success: never
+    on_failure: always
