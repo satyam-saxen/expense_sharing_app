@@ -1,0 +1,15 @@
+install: skip
+os: linux
+before_script:
+  - npm install
+script:
+  - npm test
+notifications:
+  email:
+    recipients:
+      - chandan@technogise.com
+      - aamir@technogise.com
+      - satyam@technogise.com
+      - shubhamsahu@technogise.com
+    on_success: change
+    on_failure: always
