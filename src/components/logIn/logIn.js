@@ -1,9 +1,10 @@
 import Input from "react-validation/build/input";
 import Form from "react-validation/build/form";
 import {useState, useRef} from 'react';
-import register from './../../services/userService';
-import './signUp.css';
+import login from './../../services/userService';
+import './../signUp/signUp.css';
 import {Link} from 'react-router-dom';
+import cookieHandler from '../HandleCookie/handleCookie';
 
 const validPhone = (value) => {
     if (value.length !== 10) {
@@ -24,22 +25,15 @@ const vpassword = (value) => {
       );
     }
   };
-const SignUp = (props)=>{
+const LogIn = (props)=>{
     const form = useRef();
-    let [name,setName]=useState('');
     let [phone,setPhone]=useState('');
     let [password,setPassword]=useState('');
-    let [confirmPassword,setConfirmPassword]=useState('');
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
     const [status,setStatus] = useState(false);
     const [response,setResponse] = useState(null);
     const [errorMsg,setErrorMsg] = useState('');
-
-      const onChangeUsername = (e) => {
-        const username = e.target.value;
-        setName(username);
-      };
     
       const onChangephone = (e) => {
         const phone = e.target.value;
@@ -50,14 +44,8 @@ const SignUp = (props)=>{
         const password = e.target.value;
         setPassword(password);
       };
-    
-      const onChangeConfirmPassword = (e) => {
-        const confirmPassword = e.target.value;
-        setConfirmPassword(confirmPassword);
-      };
 
-
-    const handleRegister = (e)=>{
+    const handleLogin = (e)=>{
         e.preventDefault();
 
         setMessage("");
@@ -68,33 +56,31 @@ const SignUp = (props)=>{
           setMessage("");
           if(phone.length !== 10){
             setMessage("Phone number is not Valid");
-          }else if(password !== confirmPassword || password.length<6){
-          setMessage("Passwords don't match");
-          if(phone.length !== 10){
-            setMessage("Phone number is not Valid");
-          }
-          if(password.length<6 || password.length>40) {
+          }else if(password.length<6 || password.length>40) {
             setMessage("Password must be between 6 and 40 characters");
-          }
           }else{             
-               register({name,phone,password})
+               login({phone,password})
                .then(response=>{
                 setResponse(response);
-                if(response.status === 201){
-                  props.history.push('/login');
+                if(response.status === 200){
+                  cookieHandler.setCookie('esaUserToken', response.data);
+                  console.log(response.data);
+                  props.history.push('/home');
                 }else{
                    setStatus(true);
-                   if(response.status === 409){
+                   if(response.status === 401){
                       setErrorMsg("This phone number already exists, try logging in");
-                   }else if(response.status === 400) {
-                     setErrorMsg("Data Incorrect");
+                   }else if(response.status === 404) {
+                     setErrorMsg("Phone number does not exist");
+                   }else{
+                       console.log(response);
+                     setErrorMsg(response.status);
                    }
-                  //  else{
-                  //    setErrorMsg(response);
-                  //  }
                 }
                }).catch(error =>{
-                 setStatus(true);
+                   console.log(error);
+                   console.log(error.message);
+                setStatus(true);
                  setErrorMsg(error.message);
                })
 
@@ -104,31 +90,22 @@ const SignUp = (props)=>{
     return(
         <div className="container">
         <section id="content" >
-            <Form onSubmit={handleRegister} ref={form}>
+            <Form onSubmit={handleLogin} ref={form}>
               {!successful && <div>
                 <h1>Expense Sharing App</h1>
-                <h3>SignUp</h3>
-                <div className="form-group">
-                    <label htmlFor="inputName" className="control-label">Name</label>
-                    <Input type="text" className="form-control" id="inputName" required={true} placeholder="Name" name='name' value={name}
-                    onChange={onChangeUsername}/>
-                </div>
+                <h3>Log In</h3>
+                
                 <div className="form-group">
                     <label htmlFor="phone" className="control-label">Phone</label>
                     <Input type="number" className="form-control" id="phone" required={true} name='phone'
                         placeholder="10 digit Phone Number"
                     value={phone} onChange={onChangephone} validations={[validPhone]}/>
                 </div>
+                
                 <div className="form-group">
                     <label htmlFor="inputPassword" className="control-label" name='password'>Password</label>
                         <Input type="password" data-minlength={8} className="form-control" id="inputPassword" placeholder="Password" required={true} name="password"
-                        value={password} onChange={onChangePassword} validations={[vpassword]}/>
-                        
-                    
-                    <label htmlFor="inputPassword" className="control-label" name='password'>Confirm Password</label>
-                        <Input type="password" className="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="don't match" placeholder="Confirm" required={true}
-                        value={confirmPassword} onChange={onChangeConfirmPassword} validations={[vpassword]}/>
-                        
+                        value={password} onChange={onChangePassword} validations={[vpassword]}/>        
                 </div>
                 
                 {message && 
@@ -142,9 +119,9 @@ const SignUp = (props)=>{
                   </div>
                 }
                 <div className="form-group">
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">Login</button>
                 </div>
-                <Link to = '/login'>Login Instead</Link>
+                <Link to = '/sign-up'>Don't have an account ?, Sign Up here</Link>
                 </div> }
                 {status && 
                   <div className="form-group">
@@ -163,4 +140,4 @@ const SignUp = (props)=>{
 }
 
 
-export default SignUp;
+export default LogIn;

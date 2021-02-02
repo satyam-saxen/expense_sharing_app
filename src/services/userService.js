@@ -30,4 +30,33 @@ async function register({phone,password,name}){
   return responseData;
 }
 
-export default register;
+async function login({phone,password}){
+  let response = () => {
+    
+  return new Promise(function(resolve, reject) {
+      const options = {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json, text/plain',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          phoneNumber:phone,
+          password: password,
+        }) 
+      }
+
+      fetch(`${Config.Config.url}/users`,
+          options
+      ).then(response => {
+        resolve(response);
+      }).catch(error=>{
+        reject(error);
+      });
+    });
+  };
+  let responseData = await response();
+  return responseData;
+}
+
+export default (register, login);
