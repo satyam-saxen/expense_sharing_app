@@ -9,7 +9,7 @@ afterEach(cleanup);
 describe('Homepage content', () => {
     test('renders homepage correctly', () => {
         render(<Homepage></Homepage>);
-        expect(screen.getByRole('button')).toBeInTheDocument();
+        expect(screen.getByText('Expense Sharing App')).toBeInTheDocument();
     });
   });
 
@@ -31,4 +31,3 @@ describe('Button events', () => {
         expect(cookie.get('esaUserToken')).toBeUndefined();
     });
   });
-
