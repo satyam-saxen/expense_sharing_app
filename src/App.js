@@ -1,13 +1,19 @@
 import './App.css';
-import SignUp from './components/signUp/signUp';
+import {Switch, Route, BrowserRouter } from 'react-router-dom';
+import Homepage from './components/homepage/homepage';
+import SignUp from './components/signUp/SignUp';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="App">
-      <header></header>
-      <main>
-        <SignUp></SignUp>
+    <div className="App">      
+      <main className="row">
+        <BrowserRouter>
+          <Switch>
+            <Route exact path={["/", "/home"]} component={Homepage} />
+            <Route exact path="/sign-up" component={SignUp} />
+          </Switch>
+        </BrowserRouter>
       </main>
       <footer>
         <div>Presented By Technogise Interns 2k21</div>

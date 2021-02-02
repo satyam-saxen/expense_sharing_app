@@ -1,7 +1,9 @@
 .App {
   text-align: center;
   height: 100vh;
-  background-color: aquamarine;
+  background-color: #87cbe6;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 footer {
@@ -10,10 +12,6 @@ footer {
   bottom: 0;
   width: 100%;
   background-color: black;
-  color: aquamarine;
+  color: #37b9ec;
   text-align: center;
-}
-
-header {
-  background-color: aquamarine;
 }
