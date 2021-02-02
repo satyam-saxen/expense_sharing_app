@@ -3,6 +3,7 @@ import Form from "react-validation/build/form";
 import {useState, useRef} from 'react';
 import register from './../../services/userService';
 import './signUp.css';
+import {Link} from 'react-router-dom';
 
 const validPhone = (value) => {
     if (value.length !== 10) {
@@ -80,7 +81,7 @@ const SignUp = (props)=>{
                .then(response=>{
                 setResponse(response);
                 if(response.status === 201){
-                  props.history.push('/home');
+                  props.history.push('/login');
                 }else{
                    setStatus(true);
                    if(response.status === 409){
@@ -141,7 +142,7 @@ const SignUp = (props)=>{
                 <div className="form-group">
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </div>
-                <a href="http://www.technogise.com"> Login Instead </a>
+                <Link to = '/login'>Login Instead</Link>
                 </div> }
                 {status && 
                   <div className="form-group">

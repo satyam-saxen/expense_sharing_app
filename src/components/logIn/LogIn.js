@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 
 const LogIn=(props) => {
     return (
@@ -8,7 +9,7 @@ const LogIn=(props) => {
             <Password password={props.params.password} setPassword={props.params.setPassword}></Password>
             <Button id="signInButton"></Button>
             <h5>.</h5>
-            <a id="register" href="http://www.technogise.com"> Register Here </a>
+            <Link to = '/sign-up'> Register Here </Link>
         </div>
     );
 }
