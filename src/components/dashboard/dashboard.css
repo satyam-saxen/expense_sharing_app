@@ -1,0 +1,16 @@
+.dashboard {
+    margin:0%;
+    padding: 0%;
+    background-color: #71cbee;
+    height: 100vh;
+}
+
+.nav{
+    background-color: #5cc6f0;
+    background-position: 0%;
+}
+
+.add-expense-btn {
+    background: transparent;
+    color: #0a435a;
+}
