@@ -4,6 +4,7 @@
   background-color: #87cbe6;
   width: 100%;
   overflow: hidden;
+  overflow-x: hidden;
 }
 
 footer {
