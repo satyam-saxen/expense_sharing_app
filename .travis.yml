@@ -1,6 +1,10 @@
+langugage: node_js
+node_js:
+  - "12"
 install: skip
 os: linux
 before_script:
+  - npm i -g npm@6.12.0
   - npm install
 script:
   - npm test
