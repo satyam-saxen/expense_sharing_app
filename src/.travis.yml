@@ -7,6 +7,9 @@ script:
 notifications:
   email:
     recipients:
+      - chandan@technogise.com
+      - aamir@technogise.com
       - satyam@technogise.com
-    on_success: never
+      - shubhamsahu@technogise.com
+    on_success: change
     on_failure: always
