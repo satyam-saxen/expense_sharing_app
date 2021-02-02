@@ -2,6 +2,8 @@ import React from "react";
 import { screen, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Form from "./form";
+import LogIn from "../logIn/LogIn";
+import axios from 'axios';
 
 jest.mock('axios');
 
@@ -28,3 +30,4 @@ describe("Form", () => {
 
   });
 });
+

@@ -20,14 +20,13 @@ const Form = ()=>{
         if(phone.length!==10 || password.length<6)
         return alert('Invalid Phone or Password!');
        
-         try{
-               
-             const response = await userLogIn(phone,password);
-             console.log(response);
-             setResponseComponent(response);
-             setIsValid(true);
+            try {   
+                const response = await userLogIn(phone,password);
+                console.log(response);
+                setResponseComponent(response);
+                setIsValid(true);
             }
-            catch(err){
+            catch(err) {
                 // alert(err.message);
                 LogInResponse(err.response);
                 console.log(err.response.status);
