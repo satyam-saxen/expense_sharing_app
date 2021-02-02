@@ -13,20 +13,18 @@ describe('Homepage content', () => {
     });
   });
 
-describe('Button event 1', () => {
-    test('Show alert message', () => {
+describe('Button events', () => {
+    test('Check alert message when cookie is not set', () => {
         window.alert = jest.fn();
         render(<Homepage></Homepage>);
         const node = screen.getByText('Logout');
         fireEvent.click(node);
         expect(window.alert).toBeCalledWith('Already logged out');
     });
-  });
   
-describe('Button event 2', () => {
-    test('Render to sign-up pge', () => {
+    test('Checks the deletion of cookie when cookie is set', () => {
         const cookie = new Cookies();
-        cookie.set('esaUserToken','dummy login',{path:'/'});
+        cookie.set('esaUserToken','dummy login token',{path:'/'});
         render(<Homepage></Homepage>);
         const node = screen.getByText('Logout');
         fireEvent.click(node);

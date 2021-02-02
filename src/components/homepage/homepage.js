@@ -7,14 +7,12 @@ const Homepage = (props)=>{
         event.preventDefault();
         const cookie = new Cookies();
         try{
-            if(cookie.get('esaUserToken')==null){
+            if(cookie.get('esaUserToken')==null)
                 alert("Already logged out");
-                props.history.push('/sign-up');
-            }
-            else{
+            else
                 cookie.remove('esaUserToken');
-                props.history.push('/sign-up');
-            }
+            
+            props.history.push('/sign-up');
         }
         catch{
             alert("An unexpected error occured\n Request can't be processed now");
