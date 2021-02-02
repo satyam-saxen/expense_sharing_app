@@ -73,55 +73,7 @@ form:after {
 	background: linear-gradient(to right,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
     right: 0;
 }
-#content h5:after {
-	right:100px;
-}
-.form-group {
-    height:50px;
-}
-#pass {
-    font-size: medium;
-    text-align: center;
-    position:absolute;
-    bottom:130px;
-    left:150px
-}
-#phoneText {
-    font-size: medium;
-    text-align: center;
-    position:absolute;
-    bottom:215px;
-    left:160px
-}
-#phoneBox {
-    position: relative;
-    bottom:-30px;
-    left:5px;
-}
-#inputPassword {
-    position:relative;
-    bottom:-65px;
-    left:5px;
-}
-#signButton {
-    position: relative;
-    bottom:-65px;
-    left:5px;
-    block-size: 40px;
-    background-color: #0b89bb;
-    width: 80px;
-    color:#ffffff;
-    border-style: none;
-    border-radius: 5px;
-}
-#register {
-    font-size: medium;
-    color: #031b42;
-    position: relative;
-    bottom:1px;
-    left:5px;
-}
-
+ 
 #content h1:before {
 	background: rgb(126,126,126);
 	background: -moz-linear-gradient(right,  rgba(126,126,126,1) 0%, rgba(255,255,255,1) 100%);
