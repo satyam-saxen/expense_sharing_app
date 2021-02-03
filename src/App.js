@@ -3,6 +3,7 @@ import {Switch, Route, BrowserRouter } from 'react-router-dom';
 import Homepage from './components/homepage/homepage';
 import SignUp from './components/signUp/SignUp';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Dashboard from './components/dashboard/dashboard';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
             <Route exact path={["/", "/home"]} component={Homepage} />
             <Route exact path="/sign-up" component={SignUp} />
           </Switch>
+          <Dashboard></Dashboard>
         </BrowserRouter>
       </main>
       <footer>
