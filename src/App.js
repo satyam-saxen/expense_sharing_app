@@ -1,9 +1,16 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import {Switch, Route, BrowserRouter } from 'react-router-dom';
 import Homepage from './components/homepage/homepage';
+import LogIn from './components/login/login';
 import SignUp from './components/signUp/SignUp';
+<<<<<<< HEAD
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dashboard from './components/dashboard/dashboard';
+||||||| merged common ancestors
+import 'bootstrap/dist/css/bootstrap.min.css';
+=======
+>>>>>>> master
 
 function App() {
   return (
@@ -13,6 +20,7 @@ function App() {
           <Switch>
             <Route exact path={["/", "/home"]} component={Homepage} />
             <Route exact path="/sign-up" component={SignUp} />
+            <Route exact path="/login" component={LogIn} />
           </Switch>
           <Dashboard></Dashboard>
         </BrowserRouter>

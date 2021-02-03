@@ -1,12 +1,16 @@
-.contain { 
-    padding-top: 15px;
-    padding-right: 40px;
-    padding-bottom: 15px;
+.header-container { 
     width:100%;
-    background-color: rgb(63, 128, 185);
 }
 
-.logout-button{
-    float: right;
-    background-color: rgb(100, 158, 209);
+.ml-auto{
+    padding-right: 5%;
+}
+
+.header-name{
+    padding-left: 5%;
+    color:rgb(61, 51, 51);
+}
+
+.navbar{
+    background-color:rgb(80, 131, 175);
 }

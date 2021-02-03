@@ -80,8 +80,10 @@ const Dashboard = ()=>{
 
                                 </div>
                             </div>
-                            <div className="row">
-                                
+                            <div className="card-container">                                
+                                <div className="row shadow-sm p-3 rounded debt-card">
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
