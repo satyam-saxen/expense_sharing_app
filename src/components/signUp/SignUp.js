@@ -142,6 +142,12 @@ const SignUp = (props)=>{
                 <div className="form-group">
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </div>
+
+                <div>
+                    <h4>Already have an account?</h4>
+                    <a href="/login">Log In</a>
+                </div>
+                
                 </div> }
                 {status && 
                   <div className="form-group">
