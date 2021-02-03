@@ -1,8 +1,13 @@
+.dashboard-container{
+    width: 100%;
+}
+
 .dashboard {
     margin:0%;
     padding: 0%;
-    background-color: #71cbee;
-    height: 100vh;
+    background-color: #a3d9ee;
+    height: 120vh;
+    width: 100%;
 }
 
 .nav{
@@ -13,4 +18,23 @@
 .add-expense-btn {
     background: transparent;
     color: #0a435a;
+}
+
+.debt-card{
+    padding: 0%;
+    margin: auto;
+    height: 70px;
+    margin-top: 0%;
+    padding-top: 0%;
+}
+
+.card-item{
+    text-align: start;
+}
+
+.card-container{
+    overflow-y:auto;
+    height: 92vh;
+    padding-top: 0%;
+    margin-top: 0%;
 }
