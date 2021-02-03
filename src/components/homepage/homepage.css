@@ -1,0 +1,16 @@
+.header-container { 
+    width:100%;
+}
+
+.ml-auto{
+    padding-right: 5%;
+}
+
+.header-name{
+    padding-left: 5%;
+    color:rgb(61, 51, 51);
+}
+
+.navbar{
+    background-color:rgb(80, 131, 175);
+}

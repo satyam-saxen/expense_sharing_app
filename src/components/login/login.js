@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
-import register from './../../services/userService';
-import './signUp.css';
+import handleCookie from '../handleCookie/handleCookie';
+import login from './../../services/userLoginService';
+import './../signUp/signUp.css';
 
 const validPhone = (value) => {
     if (value.length !== 10) {
@@ -23,22 +24,16 @@ const vpassword = (value) => {
       );
     }
   };
-const SignUp = (props)=>{
+  
+const LogIn = (props)=>{
     const form = useRef();
-    let [name,setName]=useState('');
     let [phone,setPhone]=useState('');
     let [password,setPassword]=useState('');
-    let [confirmPassword,setConfirmPassword]=useState('');
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
     const [status,setStatus] = useState(false);
     const [response,setResponse] = useState(null);
     const [errorMsg,setErrorMsg] = useState('');
-
-      const onChangeUsername = (e) => {
-        const username = e.target.value;
-        setName(username);
-      };
     
       const onChangephone = (e) => {
         const phone = e.target.value;
@@ -49,14 +44,8 @@ const SignUp = (props)=>{
         const password = e.target.value;
         setPassword(password);
       };
-    
-      const onChangeConfirmPassword = (e) => {
-        const confirmPassword = e.target.value;
-        setConfirmPassword(confirmPassword);
-      };
 
-
-    const handleRegister = (e)=>{
+    async function handleLogin(e){
         e.preventDefault();
 
         setMessage("");
@@ -64,69 +53,56 @@ const SignUp = (props)=>{
         setSuccessful(false);
 
         form.current.validateAll();
-          setMessage("");
-          if(phone.length !== 10){
-            setMessage("Phone number is not Valid");
-          }else if(password !== confirmPassword || password.length<6){
-          setMessage("Passwords don't match");
-          if(phone.length !== 10){
-            setMessage("Phone number is not Valid");
+        setMessage("");
+        if(phone.length !== 10){
+          setMessage("Phone number is not Valid");
+        }else if(password.length<6 || password.length>40) {
+          setMessage("Password must be between 6 and 40 characters");
+        }else{             
+          try{
+            let response= await login({phone,password})
+            if(response.status===200){
+                let res = await response.text();
+                setResponse(res);
+                handleCookie.setCookie('esaUserToken',res);
+                props.history.push('/home');
+            }else{
+              setStatus(true);
+              if(response.status === 401){
+                setErrorMsg("Incorrect Password entered");
+              }else if(response.status === 404) {
+                setErrorMsg("No user registered with this Phone Number");
+              }else{
+                setErrorMsg(response.status);
+              }   
+            }
           }
-          if(password.length<6 || password.length>40) {
-            setMessage("Password must be between 6 and 40 characters");
+          catch(error){
+            setStatus(true);  
+            setErrorMsg(error.message);
           }
-          }else{             
-               register({name,phone,password})
-               .then(response=>{
-                setResponse(response);
-                if(response.status === 201){
-                  props.history.push('/login');
-                }else{
-                   setStatus(true);
-                   if(response.status === 409){
-                      setErrorMsg("This phone number already exists, try logging in");
-                   }else if(response.status === 400) {
-                     setErrorMsg("Data Incorrect");
-                   }else{
-                     setErrorMsg(response.status);
-                   }
-                }
-               }).catch(error =>{
-                 setStatus(true);
-                 setErrorMsg(error.message);
-               })
-
-        }        
-    }
+        }   
+    }        
 
     return(
         <div className="container">
         <section id="content" >
-            <Form onSubmit={handleRegister} ref={form}>
+            <Form onSubmit={handleLogin} ref={form}>
               {!successful && <div>
                 <h1>Expense Sharing App</h1>
-                <h3>SignUp</h3>
-                <div className="form-group">
-                    <label htmlFor="inputName" className="control-label">Name</label>
-                    <Input type="text" className="form-control" id="inputName" required={true} placeholder="Name" name='name' value={name}
-                    onChange={onChangeUsername}/>
-                </div>
+                <h3>Log In</h3>
+                
                 <div className="form-group">
                     <label htmlFor="phone" className="control-label">Phone</label>
                     <Input type="number" className="form-control" id="phone" required={true} name='phone'
                         placeholder="10 digit Phone Number"
                     value={phone} onChange={onChangephone} validations={[validPhone]}/>
                 </div>
+                
                 <div className="form-group">
                     <label htmlFor="inputPassword" className="control-label" name='password'>Password</label>
                         <Input type="password" data-minlength={8} className="form-control" id="inputPassword" placeholder="Password" required={true} name="password"
-                        value={password} onChange={onChangePassword} validations={[vpassword]}/>
-                        
-                    
-                    <label htmlFor="inputPassword" className="control-label" name='password'>Confirm Password</label>
-                        <Input type="password" className="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="don't match" placeholder="Confirm" required={true}
-                        value={confirmPassword} onChange={onChangeConfirmPassword} validations={[vpassword]}/>
-                        
+                        value={password} onChange={onChangePassword} validations={[vpassword]}/>        
                 </div>
                 
                 {message && 
@@ -140,7 +116,7 @@ const SignUp = (props)=>{
                   </div>
                 }
                 <div className="form-group">
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">Login</button>
                 </div>
                 </div> }
                 {status && 
@@ -160,4 +136,4 @@ const SignUp = (props)=>{
 }
 
 
-export default SignUp;
+export default LogIn;
