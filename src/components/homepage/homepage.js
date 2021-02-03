@@ -12,7 +12,7 @@ const Homepage = (props)=>{
             else
                 cookie.remove('esaUserToken');
             
-            props.history.push('/sign-up');
+            props.history.push('/login');
         }
         catch{
             alert("An unexpected error occured\n Request can't be processed now");
