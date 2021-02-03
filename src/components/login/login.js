@@ -90,7 +90,7 @@ const LogIn = (props)=>{
             <Form onSubmit={handleLogin} ref={form}>
               {!successful && <div>
                 <h1>Expense Sharing App</h1>
-                <h3>Log In</h3>
+                <h2>Log In</h2>
                 
                 <div className="form-group">
                     <label htmlFor="phone" className="control-label">Phone</label>

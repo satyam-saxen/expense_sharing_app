@@ -105,7 +105,7 @@ const SignUp = (props)=>{
             <Form onSubmit={handleRegister} ref={form}>
               {!successful && <div>
                 <h1>Expense Sharing App</h1>
-                <h3>SignUp</h3>
+                <h2>SignUp</h2>
                 <div className="form-group">
                     <label htmlFor="inputName" className="control-label">Name</label>
                     <Input type="text" className="form-control" id="inputName" required={true} placeholder="Name" name='name' value={name}
