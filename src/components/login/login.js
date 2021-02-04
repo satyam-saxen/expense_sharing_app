@@ -88,7 +88,7 @@ const LogIn = (props)=>{
             <Form onSubmit={handleLogin} ref={form}>
               {!successful && <div>
                 <h1>Expense Sharing App</h1>
-                <h3>Log In</h3>
+                <h2>Log In</h2>
                 
                 <div className="form-group">
                     <label htmlFor="phone" className="control-label">Phone</label>
@@ -116,6 +116,8 @@ const LogIn = (props)=>{
                 <div className="form-group">
                     <button type="submit" className="btn btn-primary">Login</button>
                 </div>
+                    <h4>Do not have an account?</h4>
+                    <a href="/sign-up">Sign Up</a>
                 </div> }
                 {status && 
                   <div className="form-group">
