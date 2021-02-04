@@ -26,26 +26,3 @@ async function startUpData({token}){
 }
 
 export default startUpData;
-
-/*const response = {
-        expenses:[
-            {
-                description:"Valentine Dinner",
-                amount:"200",
-                payerName:"Aaryam Saxena",
-                dateTime:new Date()
-            }
-        ],
-        debts:[
-            {
-                debtor:"Satyam Saxena",
-                creditor:null,
-                amount:"80"
-            },
-            {
-                debtor:null,
-                creditor:"Shubh",
-                amount:"60"
-            },
-        ]
-    }; */
