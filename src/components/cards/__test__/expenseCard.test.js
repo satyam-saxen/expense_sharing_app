@@ -15,7 +15,6 @@ describe("ExpenseCard",()=>{
         const {findByText} = await render(<ExpenseCard expense={expense}></ExpenseCard>);
         expect(await findByText('Holiday')).toBeInTheDocument();
         expect(await findByText('Paid by-Prans')).toBeInTheDocument();
-        expect(await findByText('Rs200')).toBeInTheDocument();
         expect(await findByText('Feb')).toBeInTheDocument();
         expect(await findByText('4')).toBeInTheDocument();
     });
