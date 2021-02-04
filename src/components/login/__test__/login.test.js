@@ -43,4 +43,12 @@ describe("SignUp component",()=>{
         expect(screen.getByLabelText('Phone').value).toBe('')    
     });
 
+    test('Checks for toogle from log in form to sign up form', () => {
+        const {findByText} = render(<LogIn></LogIn>);
+        const node = screen.getByText('Sign Up');
+        fireEvent.click(node);
+        expect(findByText(/SignUP/)).toBeInTheDocument;
+    });
+
 });
+
