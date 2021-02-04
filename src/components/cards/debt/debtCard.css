@@ -1,0 +1,25 @@
+.debt-card{
+    padding: 0%;
+    margin: auto;
+    height: 70px;
+    margin-top: 0%;
+    padding-top: 0%;
+}
+
+.card-item{
+    text-align: start;
+}
+
+strong {
+    font-size: 30px;
+    text-align: center;
+    color: #563D64;
+}
+
+.creditor-desc{
+    color:orange;
+}
+
+.debtor-desc{
+    color:green;
+}
