@@ -8,7 +8,7 @@ const DebtCard = ({debt})=>{
                 <>{debt.debtor !== null ? <p className="debtor-desc">owes you</p> : <p className="creditor-desc">you owe</p>}</>
             </div>
             <div className="col-md-4 col-sm-4 col-4">
-                <p><strong>{debt.amount}Rs.</strong></p>
+                <p><strong>{'\u20B9'}{debt.amount}</strong></p>
             </div>
         </div> 
     )

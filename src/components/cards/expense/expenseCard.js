@@ -24,7 +24,7 @@ const ExpenseCard = ({expense})=>{
                         <p>Paid by-{expense.payerName}</p>
                     </div>
                     <div className="col-md-3 col-sm-3 col-3">
-                        <p>Rs{expense.amount}</p>
+                        <p>{'\u20B9'}{expense.amount}</p>
                     </div>
                 </div>
             </div>  
