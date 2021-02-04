@@ -1,28 +1,40 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import './App.css';
-import Homepage from './components/homepage/homepage';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import LogIn from './components/login/login';
 import SignUp from './components/signUp/SignUp';
-<<<<<<< HEAD
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Dashboard from './components/dashboard/dashboard';
-||||||| merged common ancestors
+import handleCookie from './components/handleCookie/handleCookie';
+import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-=======
->>>>>>> master
 
 function App() {
+  handleCookie.setCookie('esaUserToken','satyam');
+  const userToken = handleCookie.getCookie('esaUserToken');
+  let loggedStatus = false;
+
+  if(userToken !== null && userToken !== undefined) {
+    loggedStatus = true;
+  }
+
   return (
     <div className="App">      
       <main className="row">
         <BrowserRouter>
           <Switch>
-            <Route exact path={["/", "/home"]} component={Homepage} />
+            <Route
+                exact
+                path="/"
+                render={() => {
+                    return (
+                      loggedStatus ?
+                      <Redirect to="/home"></Redirect> :
+                      <Redirect to="/login"></Redirect>
+                    )
+                }}
+              />
+            <Route exact path="/home" component={Dashboard} />
             <Route exact path="/sign-up" component={SignUp} />
             <Route exact path="/login" component={LogIn} />
           </Switch>
-          <Dashboard></Dashboard>
         </BrowserRouter>
       </main>
       <footer>
