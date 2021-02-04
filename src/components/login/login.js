@@ -32,7 +32,6 @@ const LogIn = (props)=>{
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
     const [status,setStatus] = useState(false);
-    const [response,setResponse] = useState(null);
     const [errorMsg,setErrorMsg] = useState('');
     
       const onChangephone = (e) => {
@@ -63,7 +62,6 @@ const LogIn = (props)=>{
             let response= await login({phone,password})
             if(response.status===200){
                 let res = await response.text();
-                setResponse(res);
                 handleCookie.setCookie('esaUserToken',res);
                 props.history.push('/home');
             }else{
