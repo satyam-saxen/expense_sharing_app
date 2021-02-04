@@ -73,5 +73,12 @@ describe("SignUp component",()=>{
         fireEvent.input(screen.getByPlaceholderText(/Password/),{target:{ value:pass}});
         fireEvent.input(screen.getByPlaceholderText(/Confirm/),{target:{ value:conPass}});
         expect(screen.getByPlaceholderText(/Password/).value).toStrictEqual(screen.getByPlaceholderText(/Confirm/).value);
+
+    });
+      test('Checks for toogle from sign up form to login form', () => {
+        const {findByText} = render(<SignUp></SignUp>);
+        const node = screen.getByText('Log In');
+        fireEvent.click(node);
+        expect(findByText(/Log In/)).toBeInTheDocument;
     });
 });
