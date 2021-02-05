@@ -21,7 +21,7 @@ describe("Testing loading data-fetch API",()=>{
         expect(fetch).toBeCalledTimes(1);
         expect(fetch).toHaveBeenCalledWith(
             "http://localhost:8080/aggregated-data", { 
-            "headers": {"Content-Type": "application/json", "auth-token":token}, "method": "get"}
+            "headers": {"Content-Type": "application/json", "authToken":token}, "method": "get"}
         );
         expect(response.status).toBe(200);
     });
@@ -39,7 +39,7 @@ describe("Testing loading data-fetch API",()=>{
         expect(fetch).toBeCalledTimes(1);
         expect(fetch).toHaveBeenCalledWith(
             "http://localhost:8080/aggregated-data", { 
-            "headers": {"Content-Type": "application/json", "auth-token":token}, "method": "get"}
+            "headers": {"Content-Type": "application/json", "authToken":token}, "method": "get"}
         );
         expect(error.status).toBe(500);
     });

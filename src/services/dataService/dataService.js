@@ -8,7 +8,7 @@ async function startUpData({token}){
         method: 'get',
         headers: {
           'Content-Type': 'application/json',
-          'auth-token':token
+          'authToken':token
         } 
       };
 
