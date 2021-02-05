@@ -1,0 +1,40 @@
+.expense-card {
+    height: 80px;
+    display: flex;
+}
+
+figure {	
+	width: 64px;
+	height: 60px;	
+	background-color: #91d0e9;
+	border-radius: 5px;	
+}
+	
+figure header {
+    width: 64px;
+	height: 30px;
+    top: -1px;
+    background-color: #88d6f5;
+    border-radius: 3px solid #e5e5e5;
+    font: 400 15px/27px Arial, Helvetica, sans-serif;
+    letter-spacing: 0.5px;
+    color: #3e7d96;
+    text-align: center;
+}
+
+figure section {
+    width: 64px;
+	height: 35px;
+    top: 28px;
+    font-size: large ;
+    font-family:  "Helvetica Neue", Arial, Helvetica, sans-serif;
+    letter-spacing: -2px;
+    color: #4c566b;
+    text-align: center;
+    z-index: 10;    
+}
+
+.expense-desc{
+    text-align: start;
+    margin-left: 0%;
+}

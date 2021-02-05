@@ -2,19 +2,18 @@ import { Nav, Navbar } from 'react-bootstrap';
 import Cookies from 'universal-cookie';
 import './homepage.css';
 
-const Homepage = (props)=>{
+const Homepage = ({props})=>{
     function logout(event) {
         event.preventDefault();
         const cookie = new Cookies();
         try{
-            if(cookie.get('esaUserToken')==null)
-                alert("Already logged out");
+            if(cookie.get('esaUserToken')===null || cookie.get('esaUserToken')=== undefined){
+                alert("Already logged out");}
             else
                 cookie.remove('esaUserToken');
-            
             props.history.push('/login');
         }
-        catch{
+        catch(e){
             alert("An unexpected error occured\n Request can't be processed now");
         }
     };

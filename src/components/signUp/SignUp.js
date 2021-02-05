@@ -32,7 +32,6 @@ const SignUp = (props)=>{
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
     const [status,setStatus] = useState(false);
-    const [response,setResponse] = useState(null);
     const [errorMsg,setErrorMsg] = useState('');
 
       const onChangeUsername = (e) => {
@@ -78,7 +77,6 @@ const SignUp = (props)=>{
           }else{             
                register({name,phone,password})
                .then(response=>{
-                setResponse(response);
                 if(response.status === 201){
                   props.history.push('/login');
                 }else{
