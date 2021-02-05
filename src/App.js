@@ -7,7 +7,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  handleCookie.setCookie('esaUserToken','satyam');
+  
   const userToken = handleCookie.getCookie('esaUserToken');
   let loggedStatus = false;
 
