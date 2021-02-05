@@ -42,10 +42,10 @@ const Dashboard = (props)=>{
                 <div className="dashboard shadow p-3 mb-5 rounded">
                     <div className="row align-items-center nav shadow p-3">
                         <div className="col-md-4">
-                            <h5>{resp!==null ? resp.user.name : "Unknown"}'s Dashboard</h5>
+                            <h5>{resp!==null ? resp.user.name : ""} Dashboard</h5>
                         </div>
                         <div className="offset-md-3 col-md-5 justify-item-end">
-                            <button className="btn btn-primary add-expense-btn">Add an Expense</button>
+                            <button className="add-expense-btn">Add an Expense</button>
                         </div>
                     </div>
                     <div className="row">
