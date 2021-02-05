@@ -10,7 +10,7 @@ describe("ExpenseCard",()=>{
             description:"Holiday",
             amount:"200",
             payerName:"Prans",
-            dateTime:new Date()
+            dateTime:new Date("2014-02-04")
         };
         const {findByText} = await render(<ExpenseCard expense={expense}></ExpenseCard>);
         expect(await findByText('Holiday')).toBeInTheDocument();
