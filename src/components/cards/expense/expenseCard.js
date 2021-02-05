@@ -3,6 +3,7 @@ import './expenseCard.css';
 const month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 const ExpenseCard = ({expense})=>{
+    expense.dateTime = new Date(expense.dateTime);
     return(
         <div className="row shadow-sm p-2 rounded expense-card">
             <div className="col-md-3 col-sm-3 col-3">
