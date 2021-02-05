@@ -11,13 +11,22 @@
 }
 
 .nav{
-    background-color: #5cc6f0;
+    background-color: #85bdd3;
     background-position: 0%;
 }
 
 .add-expense-btn {
-    background: transparent;
+    background: #72bddb;
     color: #0a435a;
+    border-radius: 5px;
+    border-color:#6ac5e9 ;
+}
+
+.add-expense-btn:hover {
+    background: #5ecbf7;
+    color: #0a435a;
+    border-radius: 5px;
+    border-color:#6ac5e9 ;
 }
 
 .debt-card{
