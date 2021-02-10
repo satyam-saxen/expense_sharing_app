@@ -44,6 +44,11 @@ const AddExpenseForm = (props) => {
   }
   const [successful, setSuccessful] = useState(false);
 
+
+  async function close() {
+    props.onHide(false);
+  }
+
   const onChangeDescription = (e) => {
     const desc = e.target.value;
     setDescription(desc);
@@ -69,11 +74,6 @@ const AddExpenseForm = (props) => {
 
   async function handleRegister(e) {
     e.preventDefault();
-    console.log(description);
-    console.log(amount);
-    console.log(payerId);
-    console.log(debtors);
-
     setSuccessful(false);
 
     let token = handleCookie.getCookie('esaUserToken');
@@ -88,6 +88,7 @@ const AddExpenseForm = (props) => {
     } else {
       try {
         let debtorIds = debtors.map(getId);
+        amount = parseFloat(amount);
         let response = await addExpense({ token, description, amount, payerId, debtorIds });
         if (response.status === 200) {
           let res = await response.json();
@@ -96,6 +97,7 @@ const AddExpenseForm = (props) => {
         } else {
           if (response.status === 401) {
             alert("The expense creation was not successful \n Please login again")
+            props.history.push('/login');
           } else {
             alert("The expense creation was not successful");
           }
@@ -111,7 +113,7 @@ const AddExpenseForm = (props) => {
         setAllUsersPayers(null);
         setDebtors([]);
         setPayerId(null);
-        props.onHide();
+        props.onHide(false);
       }
     }
   }
@@ -120,7 +122,7 @@ const AddExpenseForm = (props) => {
   return (
     <Modal
       {...props}
-      size="lg"
+      size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
@@ -134,30 +136,28 @@ const AddExpenseForm = (props) => {
           <Form ref={form}>
             {!successful &&
               <div>
-                <div>
-                  <label htmlFor="payer" className="control-label">Payer Name</label>
-                  <select className="custom-select" onChange={onChangePayer} required={true}>
-                    <option disabled selected value> -- Select an option -- </option>
+                <div id='label'><label htmlFor="payer" className="control-label"><b>Payer</b></label>
+                  <select className="custom-select" onChange={onChangePayer} required={true} name='payer' data-testid='payer-drop-down'>
+                    <option disabled selected value > -- Select an option -- </option>
                     {allUsersPayers === null && props.otherUsers !== null && props.user !== null ? setAllUsersPayers(props.otherUsers.concat(props.user)) : null}
                     {allUsersPayers !== null ?
                       allUsersPayers.map((currentUser, index) => <option value={index} >{currentUser.name + " (" + currentUser.phoneNumber + ")"}</option>)
                       : null}
                   </select>
                 </div>
-                <div className="form-group">
-                  <label htmlFor="description" className="control-label">Description</label>
+                <div id='label'>
+                  <label htmlFor="amount" className="control-label"><b>Amount</b></label>
+                  <Input type="number" className="form-control" id="amount" required={true} placeholder="Total Amount Spent"
+                    name='amount' value={amount} onChange={onChangeAmount} validations={[validAmount]} />
+                </div>
+                <div id='label'>
+                  <label htmlFor="description" className="control-label"><b>Description</b></label>
                   <Input type="text" className="form-control" id="description" required={true} placeholder="Description"
                     name='description' value={description} onChange={onChangeDescription} validations={[validDescription]} />
                 </div>
-                <div className="form-group">
-                  <label htmlFor="amount" className="control-label">Amount</label>
-                  <Input type="number" className="form-control" id="amount" required={true} name='amount'
-                    placeholder="Total Amount Spent"
-                    value={amount} onChange={onChangeAmount} validations={[validAmount]} />
-                </div>
-                <div>
-                  <label htmlFor="dentor" className="control-label">Debtor Names</label>
-                  <select className="custom-select" onChange={onChangeDebtors} required={true}>
+                <div id='label'>
+                  <label htmlFor="dentor" className="control-label"><b>Debtors</b></label>
+                  <select className="custom-select" onChange={onChangeDebtors} isMulti={true} data-testid='debtor-drop-down' showNewOptionAtTop={true}>
                     {allUsersDebtors === null && props.otherUsers !== null && props.user !== null ? setAllUsersDebtors(props.otherUsers.concat(props.user).concat(dummyUser)) : null}
                     <option disabled selected value> -- Select an option -- </option>
                     {allUsersDebtors !== null ?
@@ -166,7 +166,7 @@ const AddExpenseForm = (props) => {
                       : null}
                   </select>
                 </div>
-                <div>
+                <div id='label'>
                   {(debtors.map((item, index) => item.name)).toString()}
                 </div>
               </div>
@@ -175,9 +175,7 @@ const AddExpenseForm = (props) => {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <div className="text-left">
-          <Button variant="danger" size="lg" className="float-left" onClick={props.onHide}>Cancel</Button>
-        </div>
+        <Button id='cancel' variant="danger" size="lg" onClick={close}>Cancel</Button>
         <Button variant="success" size="lg" onClick={handleRegister}>Save</Button>
       </Modal.Footer>
     </Modal>

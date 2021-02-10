@@ -13,7 +13,7 @@ const Dashboard = (props) => {
   const [show, setShow] = useState(false);
   const [expenseResponse, setExpenseResponse] = useState(null);
   const [expenseUpdated, setExpenseUpdated] = useState(false);
-  let close = () => { setShow(false); }
+  let close = (val) => { setShow(val); }
   let setRes = (res) => { setExpenseResponse(res); }
   let setResState = () => { setExpenseUpdated(true); }
 
