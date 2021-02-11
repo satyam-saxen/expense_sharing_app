@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import * as React from 'react';
 import { act } from 'react-dom/test-utils';
 import AddExpenseForm from '../../components/expense/modal';
-
+import Config from './../../Config.json';
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
@@ -211,7 +211,7 @@ describe("Testing add expense API", () => {
       fireEvent.click(screen.getByText('Save'));
       expect(window.fetch).toHaveBeenCalledTimes(1);
       expect(fetch).toHaveBeenCalledWith(
-        "http://localhost:8080/expenses", {
+        Config.Config.url + "/expenses", {
         "body": JSON.stringify({
           description: description,
           amount: amount,

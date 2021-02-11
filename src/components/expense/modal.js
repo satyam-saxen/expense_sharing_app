@@ -44,6 +44,14 @@ const AddExpenseForm = (props) => {
   }
   const [successful, setSuccessful] = useState(false);
 
+  function clearAll() {
+    setDescription('');
+    setAmount(null);
+    setAllUsersDebtors(null);
+    setAllUsersPayers(null);
+    setDebtors([]);
+    setPayerId(null);
+  }
 
   async function close() {
     props.onHide(false);
@@ -109,12 +117,6 @@ const AddExpenseForm = (props) => {
         alert("The expense creation was not successful \n Some unexpected error occured");
       }
       finally {
-        setDescription('');
-        setAmount(0);
-        setAllUsersDebtors(null);
-        setAllUsersPayers(null);
-        setDebtors([]);
-        setPayerId(null);
         props.onHide(false);
       }
     }
@@ -127,6 +129,7 @@ const AddExpenseForm = (props) => {
       size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      onEnter={clearAll}
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
