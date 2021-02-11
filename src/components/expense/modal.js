@@ -44,6 +44,18 @@ const AddExpenseForm = (props) => {
   }
   const [successful, setSuccessful] = useState(false);
 
+  function clearAll() {
+    setDescription('');
+<<<<<<< HEAD
+    setAmount(null);
+=======
+    setAmount(undefined);
+>>>>>>> 79c8339 (Refactor url name in tests and add clearing properties to pop up form after closed)
+    setAllUsersDebtors(null);
+    setAllUsersPayers(null);
+    setDebtors([]);
+    setPayerId(null);
+  }
 
   async function close() {
     props.onHide(false);
@@ -72,6 +84,10 @@ const AddExpenseForm = (props) => {
     });
     if (!replace)
       setDebtors(debtors.concat({ id: allUsersDebtors[index].id, name: allUsersDebtors[index].name, phoneNumber: allUsersDebtors[index].phoneNumber }));
+  }
+
+  function amountClear() {
+    setAmount('');
   }
 
   async function handleRegister(e) {
@@ -109,12 +125,6 @@ const AddExpenseForm = (props) => {
         alert("The expense creation was not successful \n Some unexpected error occured");
       }
       finally {
-        setDescription('');
-        setAmount(0);
-        setAllUsersDebtors(null);
-        setAllUsersPayers(null);
-        setDebtors([]);
-        setPayerId(null);
         props.onHide(false);
       }
     }
@@ -127,6 +137,11 @@ const AddExpenseForm = (props) => {
       size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+<<<<<<< HEAD
+=======
+      onEntered={amountClear}
+>>>>>>> 79c8339 (Refactor url name in tests and add clearing properties to pop up form after closed)
+      onEnter={clearAll}
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
