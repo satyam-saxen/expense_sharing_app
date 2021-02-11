@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import * as React from 'react';
-import renderer from 'react-test-renderer';
 import AddExpenseForm from './../modal';
 
 
@@ -16,13 +15,6 @@ beforeEach(() => {
 });
 
 afterEach(cleanup);
-
-describe("Dashboard's snapshot test", () => {
-  it("Sapshot Matching of whole form", () => {
-    const tree = renderer.create(<AddExpenseForm otherUsers={null} user={null}></AddExpenseForm>).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-});
 
 describe("Dashboard element's test", () => {
 

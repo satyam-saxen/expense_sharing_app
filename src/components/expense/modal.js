@@ -66,10 +66,12 @@ const AddExpenseForm = (props) => {
 
   const onChangeDebtors = (e) => {
     const index = e.target.value;
-    setDebtors(debtors.concat({ id: allUsersDebtors[index].id, name: allUsersDebtors[index].name, phoneNumber: allUsersDebtors[index].phoneNumber }));
-    const temp = allUsersDebtors;
-    temp.splice(index, 1);
-    setAllUsersDebtors(temp);
+    let replace = false;
+    debtors.forEach(item => {
+      if (item.id === allUsersDebtors[index].id) replace = true;
+    });
+    if (!replace)
+      setDebtors(debtors.concat({ id: allUsersDebtors[index].id, name: allUsersDebtors[index].name, phoneNumber: allUsersDebtors[index].phoneNumber }));
   }
 
   async function handleRegister(e) {

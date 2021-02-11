@@ -201,10 +201,10 @@ describe("Testing add expense API", () => {
       target: { value: 0 },
     });
     fireEvent.change(screen.getByTestId('debtor-drop-down'), {
-      target: { value: 0 },
+      target: { value: 1 },
     });
     fireEvent.change(screen.getByTestId('debtor-drop-down'), {
-      target: { value: 0 },
+      target: { value: 2 },
     });
 
     await act(async () => {
