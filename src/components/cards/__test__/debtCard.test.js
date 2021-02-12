@@ -14,7 +14,6 @@ describe("DebtCard",()=>{
         const {findByText} = await render(<DebtCard debt={debt}></DebtCard>);
         expect(await findByText('owes you')).toBeInTheDocument();
         expect(await findByText('A')).toBeInTheDocument();
-        expect(await findByText('₹20')).toBeInTheDocument();
     });
 
     it("renders the debt card when the debtor is null",async ()=>{
@@ -26,16 +25,4 @@ describe("DebtCard",()=>{
         const {findByText} = await render(<DebtCard debt={debt}></DebtCard>);
         expect(await findByText('you owe')).toBeInTheDocument();
     });
-
-    it("renders the debt card when the creditor is null",async ()=>{
-        const debt={
-            debtor:"A",
-            creditor:null,
-            amount:"20"
-        };
-        const {findByText} = await render(<DebtCard debt={debt}></DebtCard>);
-        expect(await findByText('owes you')).toBeInTheDocument();
-    });
-
-    
 });
