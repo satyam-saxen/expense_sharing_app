@@ -56,7 +56,7 @@ const DebtCard = (props) => {
         <>{props.debt.debtor !== null ? <p className="debtor-desc">owes you</p> : <p className="creditor-desc">you owe</p>}</>
       </div>
       <div className="col-md-4 col-sm-4 col-4">
-        <p><strong>{'\u20B9'}{(props.debt.amount).toFixed(2)}</strong></p>
+        <p><strong>{'\u20B9'}{Math.round((props.debt.amount + Number.EPSILON) * 100) / 100}</strong></p>
       </div>
       <div className="btn-container col-md-4 col-sm-4 col-4">
         <button
