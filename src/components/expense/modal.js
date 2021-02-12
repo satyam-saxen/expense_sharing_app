@@ -46,11 +46,7 @@ const AddExpenseForm = (props) => {
 
   function clearAll() {
     setDescription('');
-<<<<<<< HEAD
-    setAmount(null);
-=======
     setAmount(undefined);
->>>>>>> 79c8339 (Refactor url name in tests and add clearing properties to pop up form after closed)
     setAllUsersDebtors(null);
     setAllUsersPayers(null);
     setDebtors([]);
@@ -137,10 +133,7 @@ const AddExpenseForm = (props) => {
       size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
-<<<<<<< HEAD
-=======
       onEntered={amountClear}
->>>>>>> 79c8339 (Refactor url name in tests and add clearing properties to pop up form after closed)
       onEnter={clearAll}
     >
       <Modal.Header closeButton>
