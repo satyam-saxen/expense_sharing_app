@@ -4,6 +4,11 @@ const month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov'
 
 const ExpenseCard = ({expense})=>{
     expense.dateTime = new Date(expense.dateTime);
+
+		const deleteExpense = ()=> {
+		  alert(`${expense.description} is going to be deleted!`);
+		}
+
     return(
         <div className="row shadow-sm p-2 rounded expense-card">
             <div className="col-md-3 col-sm-3 col-3">
@@ -16,7 +21,7 @@ const ExpenseCard = ({expense})=>{
                     </section>
                 </figure>
             </div>  
-            <div className="col-md-8 col-sm-8 col-8">
+            <div className="col-md-7 col-sm-7 col-7">
                 <div className="row">
                     <h5>{expense.description}</h5>
                 </div>
@@ -28,7 +33,10 @@ const ExpenseCard = ({expense})=>{
                         <p>{'\u20B9'}{expense.amount}</p>
                     </div>
                 </div>
-            </div>  
+            </div> 
+						<div className="col-md-1 col-sm-1 col-1">
+							<button className="fa fa-trash btn delete-expense-btn" onClick={deleteExpense}></button>
+						</div> 
         </div>
     )
 };

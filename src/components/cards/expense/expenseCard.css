@@ -38,3 +38,12 @@ figure section {
     text-align: start;
     margin-left: 0%;
 }
+
+.delete-expense-btn {
+		font-size: 1.5rem;
+}
+
+.delete-expense-btn:hover{
+	align-self: center;
+	font-size: 1.5rem;
+}
