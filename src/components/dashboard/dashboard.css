@@ -1,5 +1,5 @@
-.dashboard-container{
-    width: 100%;
+.dashboard-container {
+  width: 100%;
 }
 
 .dashboard {
@@ -10,35 +10,39 @@
     width: 100%;
 }
 
-.nav{
-    background-color: #85bdd3;
-    background-position: 0%;
+.nav {
+  background-color: #85bdd3;
+  background-position: 0%;
 }
 
 .add-expense-btn {
-    background: #53aacc;
-    color: #0a435a;
-    border-radius: 5px;
-    border-color:#6ac5e9 ;
+  background: #53aacc;
+  color: #0a435a;
+  border-radius: 5px;
+  border-color: #6ac5e9;
+}
+
+.btn-container {
+  padding-top: 5px;
 }
 
 .add-expense-btn:hover {
-    background: #5ecbf7;
-    color: #0a435a;
-    border-radius: 5px;
-    border-color:#6ac5e9 ;
+  background: #5ecbf7;
+  color: #0a435a;
+  border-radius: 5px;
+  border-color: #6ac5e9;
 }
 
-.debt-card{
-    padding: 0%;
-    margin: auto;
-    height: 70px;
-    margin-top: 0%;
-    padding-top: 0%;
+.debt-card {
+  padding: 0%;
+  margin: auto;
+  height: 70px;
+  margin-top: 0%;
+  padding-top: 0%;
 }
 
-.card-item{
-    text-align: start;
+.card-item {
+  text-align: start;
 }
 
 .card-container{
