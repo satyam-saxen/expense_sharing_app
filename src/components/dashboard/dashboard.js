@@ -13,7 +13,7 @@ const Dashboard = (props) => {
   const [show, setShow] = useState(false);
   const [expenseResponse, setExpenseResponse] = useState(null);
   const [expenseUpdated, setExpenseUpdated] = useState(false);
-  let close = (val) => { setShow(val); }
+  let close = () => { setShow(false); }
   let setRes = (res) => { setExpenseResponse(res); }
   let setResState = () => { setExpenseUpdated(true); }
 
@@ -57,9 +57,9 @@ const Dashboard = (props) => {
                   className="add-expense-btn">Add an Expense</button>
                 <AddExpenseForm
                   show={show}
+                  onHide={close}
                   setRes={setRes}
                   setResState={setResState}
-                  onHide={close}
                   user={resp !== null ? resp.user : null}
                   otherUsers={resp !== null ? resp.otherUsers : null}
                 />
@@ -78,10 +78,22 @@ const Dashboard = (props) => {
                 <div className="card-container">
                   {expenseUpdated === true ?
                     (expenseResponse !== null ? expenseResponse.debts.map((debt) => (
-                      <DebtCard debt={debt}></DebtCard>
+                      <DebtCard
+                        debt={debt}
+                        setRes={setRes}
+                        setResState={setResState}
+                        user={expenseResponse.user}
+                        otherUsers={expenseResponse.otherUsers}
+                      ></DebtCard>
                     )) : null) :
                     (resp !== null ? resp.debts.map((debt) => (
-                      <DebtCard debt={debt}></DebtCard>
+                      <DebtCard
+                        debt={debt}
+                        setRes={setRes}
+                        setResState={setResState}
+                        user={resp.user}
+                        otherUsers={resp.otherUsers}
+                      ></DebtCard>
                     )) : null)}
                 </div>
               </div>
